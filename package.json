@@ -33,39 +33,9 @@
     },
     {
       "author": "whyrusleeping",
-      "hash": "QmYzDkkgAEmrcNzFCiYo6L1dTX4EAG1gZkbtdbd9trL4vd",
-      "name": "go-multiaddr",
-      "version": "0.0.0"
-    },
-    {
-      "author": "whyrusleeping",
-      "hash": "QmZy2y8t9zQH2a1b8q2ZSLKp17ATuJoCNxxyMFG5qFExpt",
-      "name": "go-net",
-      "version": "0.0.0"
-    },
-    {
-      "author": "whyrusleeping",
-      "hash": "QmUusaX99BZoELh7dmPgirqRQ1FAmMnmnBn3oiqDFGBUSc",
-      "name": "go-keyspace",
-      "version": "1.0.0"
-    },
-    {
-      "author": "whyrusleeping",
-      "hash": "QmUWER4r4qMvaCnX5zREcfyiWN7cXN9g3a7fkRqNz8qWPP",
+      "hash": "QmUEUu1CM8bxBJxc3ZLojAi8evhTr4byQogWstABet79oY",
       "name": "go-libp2p-crypto",
-      "version": "1.0.3"
-    },
-    {
-      "author": "jbenet",
-      "hash": "QmPpRcbNUXauP3zWZ1NJMLWpe4QnmEHrd2ba2D3yqWznw7",
-      "name": "go-multiaddr-net",
-      "version": "1.2.0"
-    },
-    {
-      "author": "whyrusleeping",
-      "hash": "QmeLQ13LftT9XhNn22piZc3GP56fGqhijuL5Y8KdUaRn1g",
-      "name": "mafmt",
-      "version": "1.1.1"
+      "version": "1.0.2"
     }
   ],
   "gxVersion": "0.4.0",
