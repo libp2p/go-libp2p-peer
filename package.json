@@ -42,5 +42,5 @@
   "language": "go",
   "license": "MIT",
   "name": "go-libp2p-peer",
-  "version": "2.0.0"
+  "version": "2.0.1"
 }
