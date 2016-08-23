@@ -27,9 +27,9 @@
     },
     {
       "author": "whyrusleeping",
-      "hash": "QmNQynaz7qfriSUJkiEZUrm2Wen1u3Kj9goZzWtrPyu7XR",
+      "hash": "QmSpJByNKFX1sCsHBEp3R73FL4NF6FnQTEGyNAXHm2GS52",
       "name": "go-log",
-      "version": "1.1.2"
+      "version": "1.2.0"
     },
     {
       "author": "whyrusleeping",
@@ -42,5 +42,5 @@
   "language": "go",
   "license": "MIT",
   "name": "go-libp2p-peer",
-  "version": "2.0.2"
+  "version": "2.0.3"
 }
