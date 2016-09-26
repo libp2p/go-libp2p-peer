@@ -10,7 +10,7 @@ import (
 	ic "github.com/ipfs/go-libp2p-crypto"
 	logging "github.com/ipfs/go-log" // ID represents the identity of a peer.
 	b58 "github.com/jbenet/go-base58"
-	mh "github.com/jbenet/go-multihash"
+	mh "github.com/multiformats/go-multihash"
 )
 
 var log = logging.Logger("peer")
