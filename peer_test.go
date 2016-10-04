@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	u "github.com/ipfs/go-ipfs-util"
-	ic "github.com/ipfs/go-libp2p-crypto"
-	. "github.com/ipfs/go-libp2p-peer"
-	tu "github.com/ipfs/go-libp2p-peer/test"
+	ic "github.com/libp2p/go-libp2p-crypto"
+	. "github.com/libp2p/go-libp2p-peer"
+	tu "github.com/libp2p/go-libp2p-peer/test"
 
 	b58 "github.com/jbenet/go-base58"
 )

@@ -3,7 +3,7 @@ package peerset
 import (
 	"sync"
 
-	peer "github.com/ipfs/go-libp2p-peer"
+	peer "github.com/libp2p/go-libp2p-peer"
 )
 
 // PeerSet is a threadsafe set of peers
