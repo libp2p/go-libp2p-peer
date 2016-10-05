@@ -9,39 +9,22 @@
   "gxDependencies": [
     {
       "author": "whyrusleeping",
-      "hash": "QmT8rehPR3F6bmwL6zjUN8XpiDBFFpMP2myPdC6ApsWfJf",
-      "name": "go-base58",
-      "version": "0.0.0"
-    },
-    {
-      "author": "whyrusleeping",
-      "hash": "Qmez5jG2HYFz6W4S7uEJkjyZDBPBaKKwThV5G2BnggNypj",
-      "name": "go-multihash",
-      "version": "0.1.0"
-    },
-    {
-      "author": "whyrusleeping",
-      "hash": "QmZNVWh8LLjAavuQ2JXuFmuYH3C11xo988vSgp7UQrTRj1",
-      "name": "go-ipfs-util",
-      "version": "1.0.0"
-    },
-    {
-      "author": "whyrusleeping",
       "hash": "QmSpJByNKFX1sCsHBEp3R73FL4NF6FnQTEGyNAXHm2GS52",
       "name": "go-log",
       "version": "1.2.0"
     },
     {
       "author": "whyrusleeping",
-      "hash": "QmcJMBXiguCVmFrctxFArU7fBVQHQernaLj8vFmbSv5RyW",
+      "hash": "QmfWDLQjGjVe4fr5CoztYW2DYYjRysMJrFe1RCsXLPTf46",
       "name": "go-libp2p-crypto",
-      "version": "1.3.0"
+      "version": "1.3.1"
     }
   ],
   "gxVersion": "0.4.0",
   "language": "go",
   "license": "MIT",
   "name": "go-libp2p-peer",
-  "version": "2.0.6"
+  "releaseCmd": "git commit -a -m \"gx publish $VERSION\"",
+  "version": "2.1.0"
 }
 
