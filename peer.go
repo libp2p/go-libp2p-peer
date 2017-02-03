@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"strings"
 
-	u "github.com/ipfs/go-ipfs-util"
 	logging "github.com/ipfs/go-log" // ID represents the identity of a peer.
 	b58 "github.com/jbenet/go-base58"
 	ic "github.com/libp2p/go-libp2p-crypto"
@@ -116,7 +115,7 @@ func IDFromPublicKey(pk ic.PubKey) (ID, error) {
 	if err != nil {
 		return "", err
 	}
-	hash := u.Hash(b)
+	hash, _ := mh.Sum(b, mh.SHA2_256, -1)
 	return ID(hash), nil
 }
 

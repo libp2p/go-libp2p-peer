@@ -6,10 +6,10 @@ import (
 	"strings"
 	"testing"
 
-	u "github.com/ipfs/go-ipfs-util"
 	ic "github.com/libp2p/go-libp2p-crypto"
 	. "github.com/libp2p/go-libp2p-peer"
 	tu "github.com/libp2p/go-libp2p-peer/test"
+	mh "github.com/multiformats/go-multihash"
 
 	b58 "github.com/jbenet/go-base58"
 )
@@ -17,6 +17,11 @@ import (
 var gen1 keyset // generated
 var gen2 keyset // generated
 var man keyset  // manual
+
+func hash(b []byte) []byte {
+	h, _ := mh.Sum(b, mh.SHA2_256, -1)
+	return []byte(h)
+}
 
 func init() {
 	if err := gen1.generate(); err != nil {
@@ -51,7 +56,7 @@ func (ks *keyset) generate() error {
 		return err
 	}
 
-	ks.hpk = string(u.Hash(bpk))
+	ks.hpk = string(hash(bpk))
 	ks.hpkp = b58.Encode([]byte(ks.hpk))
 	return nil
 }
@@ -73,7 +78,7 @@ func (ks *keyset) load(hpkp, skBytesStr string) error {
 		return err
 	}
 
-	ks.hpk = string(u.Hash(bpk))
+	ks.hpk = string(hash(bpk))
 	ks.hpkp = b58.Encode([]byte(ks.hpk))
 	if ks.hpkp != hpkp {
 		return fmt.Errorf("hpkp doesn't match key. %s", hpkp)
