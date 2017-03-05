@@ -60,3 +60,13 @@ func (ps *PeerSet) TryAdd(p peer.ID) bool {
 	ps.lk.Unlock()
 	return success
 }
+
+func (ps *PeerSet) Peers() []peer.ID {
+	ps.lk.Lock()
+	out := make([]peer.ID, 0, len(ps.ps))
+	for p, _ := range ps.ps {
+		out = append(out, p)
+	}
+	ps.lk.Unlock()
+	return out
+}
