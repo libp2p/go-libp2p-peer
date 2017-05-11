@@ -9,6 +9,7 @@ import (
 	logging "github.com/ipfs/go-log" // ID represents the identity of a peer.
 	b58 "github.com/jbenet/go-base58"
 	ic "github.com/libp2p/go-libp2p-crypto"
+	mc "github.com/multiformats/go-multicodec-packed"
 	mh "github.com/multiformats/go-multihash"
 )
 
@@ -61,6 +62,64 @@ func (id ID) MatchesPublicKey(pk ic.PubKey) bool {
 		return false
 	}
 	return oid == id
+}
+
+func (id ID) ExtractEd25519PublicKey() ic.PubKey {
+	// ed25519 pubkey identity format
+	// <identity mc><length (2 + 32 = 34)><ed25519-pub mc><ed25519 pubkey>
+	// <0x00       ><0x22                ><0xed01        ><ed25519 pubkey>
+
+	var nilPubKey ic.PubKey
+
+	// Decode multihash
+	decoded, err := mh.Decode([]byte(id))
+	if err != nil {
+		return nilPubKey
+	}
+
+	// Check ID multihash codec
+	if decoded.Code != mh.ID {
+		return nilPubKey
+	}
+
+	// Check multihash length
+	if decoded.Length != 2+32 {
+		return nilPubKey
+	}
+
+	// Split prefix
+	code, pubKeyBytes := mc.SplitPrefix(decoded.Digest)
+
+	// Check ed25519 code
+	if code != mc.Ed25519Pub {
+		return nilPubKey
+	}
+
+	// Unmarshall public key
+	pubKey, err := ic.UnmarshalEd25519PublicKey(pubKeyBytes)
+	if err != nil {
+		return nilPubKey
+	}
+
+	return pubKey
+}
+
+func (id ID) ExtractPublicKey() ic.PubKey {
+	var pk ic.PubKey
+
+	// Try extract ed25519 pubkey
+	pk = id.ExtractEd25519PublicKey()
+	if pk != nil {
+		return pk
+	}
+
+	// Try extract other type of pubkey
+	/*pk = id.Extract...PublicKey()
+	if pk != nil {
+		return pk
+	}*/
+
+	return pk
 }
 
 // IDFromString cast a string to ID type, and validate
