@@ -1,6 +1,7 @@
 package peer_test
 
 import (
+	"crypto/rand"
 	"encoding/base64"
 	"fmt"
 	"strings"
@@ -150,6 +151,52 @@ func TestIDMatchesPrivateKey(t *testing.T) {
 	test(gen1)
 	test(gen2)
 	test(man)
+}
+
+func TestPublicKeyExtraction(t *testing.T) {
+	// Happy path
+	_, originalPub, err := ic.GenerateEd25519Key(rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	id, err := IDFromEd25519PublicKey(originalPub)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	extractedPub := id.ExtractPublicKey()
+	if !originalPub.Equals(extractedPub) {
+		t.Fatal(err)
+	}
+
+	// Test invalid multihash (invariant of the type of public key)
+	if ID("").ExtractPublicKey() != nil {
+		t.Fatal("Expecting a nil public key")
+	}
+}
+
+func TestEd25519PublicKeyExtraction(t *testing.T) {
+	randomKey := make([]byte, 32)
+	_, err := rand.Read(randomKey)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Error case 1: Non-ID multihash
+	if ID(append([]byte{0x01 /* != 0x00 (id) */, 0x22, 0xed, 0x01}, randomKey...)).ExtractEd25519PublicKey() != nil {
+		t.Fatal("Error case 1: Expecting a nil public key")
+	}
+
+	// Error case 2: Non-34 multihash length
+	if ID(append([]byte{0x00, 0x23 /* 35 = 34 + 1 != 35 */, 0xed, 0x01, 0x00 /* extra byte */}, randomKey...)).ExtractEd25519PublicKey() != nil {
+		t.Fatal("Error case 2: Expecting a nil public key")
+	}
+
+	// Error case 3: Non-ed25519 code
+	if ID(append([]byte{0x00, 0x22, 0xef /* != 0xed */, 0x01}, randomKey...)).ExtractEd25519PublicKey() != nil {
+		t.Fatal("Error case 3: Expecting a nil public key")
+	}
 }
 
 var hpkpMan = `QmRK3JgmVEGiewxWbhpXLJyjWuGuLeSTMTndA1coMHEy5o`
