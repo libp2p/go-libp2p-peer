@@ -65,7 +65,7 @@ func (id ID) MatchesPublicKey(pk ic.PubKey) bool {
 	return oid == id
 }
 
-func (id ID) ExtractEd25519PublicKey() ic.PubKey {
+func (id ID) ExtractEd25519PublicKey() (ic.PubKey, error) {
 	// ed25519 pubkey identity format
 	// <identity mc><length (2 + 32 = 34)><ed25519-pub mc><ed25519 pubkey>
 	// <0x00       ><0x22                ><0xed01        ><ed25519 pubkey>
@@ -75,19 +75,17 @@ func (id ID) ExtractEd25519PublicKey() ic.PubKey {
 	// Decode multihash
 	decoded, err := mh.Decode([]byte(id))
 	if err != nil {
-		// This error should not occur for any identity
-		log.Error("Unable to decode multihash", id)
-		return nilPubKey
+		return nilPubKey, fmt.Errorf("Unable to decode multihash")
 	}
 
 	// Check ID multihash codec
 	if decoded.Code != mh.ID {
-		return nilPubKey
+		return nilPubKey, fmt.Errorf("Unexpected multihash codec")
 	}
 
 	// Check multihash length
 	if decoded.Length != 2+32 {
-		return nilPubKey
+		return nilPubKey, fmt.Errorf("Unexpected multihash length")
 	}
 
 	// Split prefix
@@ -95,18 +93,17 @@ func (id ID) ExtractEd25519PublicKey() ic.PubKey {
 
 	// Check ed25519 code
 	if code != mc.Ed25519Pub {
-		return nilPubKey
+		return nilPubKey, fmt.Errorf("Unexpected code prefix")
 	}
 
 	// Unmarshall public key
 	pubKey, err := ic.UnmarshalEd25519PublicKey(pubKeyBytes)
 	if err != nil {
 		// Should never occur because of the check decoded.Length != 2+32
-		log.Fatal("Unexpected error unmarshalling Ed25519 public key")
-		return nilPubKey
+		return nilPubKey, fmt.Errorf("Unexpected error unmarshalling Ed25519 public key")
 	}
 
-	return pubKey
+	return pubKey, nil
 }
 
 // ExtractPublicKey attempts to extract the public key from an ID
@@ -114,13 +111,21 @@ func (id ID) ExtractPublicKey() ic.PubKey {
 	var pk ic.PubKey
 
 	// Try extract ed25519 pubkey
-	pk = id.ExtractEd25519PublicKey()
+	pk, err := id.ExtractEd25519PublicKey()
+	if err != nil {
+		log.Info(err, id)
+	}
+
 	if pk != nil {
 		return pk
 	}
 
 	// Try extract other type of pubkey
-	/*pk = id.Extract...PublicKey()
+	/*pk, err = id.Extract...PublicKey()
+	if err != nil {
+		log.Error(err, id)
+	}
+
 	if pk != nil {
 		return pk
 	}*/
