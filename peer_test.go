@@ -183,19 +183,28 @@ func TestEd25519PublicKeyExtraction(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// Error case 1: Non-ID multihash
-	if ID(append([]byte{0x01 /* != 0x00 (id) */, 0x22, 0xed, 0x01}, randomKey...)).ExtractEd25519PublicKey() != nil {
-		t.Fatal("Error case 1: Expecting a nil public key")
+	// Error case 1: Invalid multihash
+	_, err = ID("").ExtractEd25519PublicKey()
+	if err.Error() != "Unable to decode multihash" {
+		t.Fatal("Error case 1: Expected an error")
 	}
 
-	// Error case 2: Non-34 multihash length
-	if ID(append([]byte{0x00, 0x23 /* 35 = 34 + 1 != 35 */, 0xed, 0x01, 0x00 /* extra byte */}, randomKey...)).ExtractEd25519PublicKey() != nil {
-		t.Fatal("Error case 2: Expecting a nil public key")
+	// Error case 2: Non-ID multihash
+	_, err = ID(append([]byte{0x01 /* != 0x00 (id) */, 0x22, 0xed, 0x01}, randomKey...)).ExtractEd25519PublicKey()
+	if err.Error() != "Unexpected multihash codec" {
+		t.Fatal("Error case 2: Expecting an error")
 	}
 
-	// Error case 3: Non-ed25519 code
-	if ID(append([]byte{0x00, 0x22, 0xef /* != 0xed */, 0x01}, randomKey...)).ExtractEd25519PublicKey() != nil {
-		t.Fatal("Error case 3: Expecting a nil public key")
+	// Error case 3: Non-34 multihash length
+	_, err = ID(append([]byte{0x00, 0x23 /* 35 = 34 + 1 != 35 */, 0xed, 0x01, 0x00 /* extra byte */}, randomKey...)).ExtractEd25519PublicKey()
+	if err.Error() != "Unexpected multihash length" {
+		t.Fatal("Error case 3: Expecting an error")
+	}
+
+	// Error case 4: Non-ed25519 code
+	_, err = ID(append([]byte{0x00, 0x22, 0xef /* != 0xed */, 0x01}, randomKey...)).ExtractEd25519PublicKey()
+	if err.Error() != "Unexpected code prefix" {
+		t.Fatal("Error case 4: Expecting an error")
 	}
 }
 
