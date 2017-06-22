@@ -185,25 +185,25 @@ func TestEd25519PublicKeyExtraction(t *testing.T) {
 
 	// Error case 1: Invalid multihash
 	_, err = ID("").ExtractEd25519PublicKey()
-	if err.Error() != "Unable to decode multihash" {
+	if err != MultihashDecodeErr {
 		t.Fatal("Error case 1: Expected an error")
 	}
 
 	// Error case 2: Non-ID multihash
 	_, err = ID(append([]byte{0x01 /* != 0x00 (id) */, 0x22, 0xed, 0x01}, randomKey...)).ExtractEd25519PublicKey()
-	if err.Error() != "Unexpected multihash codec" {
+	if err != MultihashCodecErr {
 		t.Fatal("Error case 2: Expecting an error")
 	}
 
 	// Error case 3: Non-34 multihash length
 	_, err = ID(append([]byte{0x00, 0x23 /* 35 = 34 + 1 != 35 */, 0xed, 0x01, 0x00 /* extra byte */}, randomKey...)).ExtractEd25519PublicKey()
-	if err.Error() != "Unexpected multihash length" {
+	if err != MultihashLengthErr {
 		t.Fatal("Error case 3: Expecting an error")
 	}
 
 	// Error case 4: Non-ed25519 code
 	_, err = ID(append([]byte{0x00, 0x22, 0xef /* != 0xed */, 0x01}, randomKey...)).ExtractEd25519PublicKey()
-	if err.Error() != "Unexpected code prefix" {
+	if err != CodePrefixErr {
 		t.Fatal("Error case 4: Expecting an error")
 	}
 }

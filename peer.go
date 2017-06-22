@@ -4,6 +4,7 @@ package peer
 import (
 	"encoding/binary"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"strings"
 
@@ -65,6 +66,11 @@ func (id ID) MatchesPublicKey(pk ic.PubKey) bool {
 	return oid == id
 }
 
+var MultihashDecodeErr = errors.New("unable to decode multihash")
+var MultihashCodecErr = errors.New("unexpected multihash codec")
+var MultihashLengthErr = errors.New("unexpected multihash length")
+var CodePrefixErr = errors.New("unexpected code prefix")
+
 func (id ID) ExtractEd25519PublicKey() (ic.PubKey, error) {
 	// ed25519 pubkey identity format
 	// <identity mc><length (2 + 32 = 34)><ed25519-pub mc><ed25519 pubkey>
@@ -75,17 +81,17 @@ func (id ID) ExtractEd25519PublicKey() (ic.PubKey, error) {
 	// Decode multihash
 	decoded, err := mh.Decode([]byte(id))
 	if err != nil {
-		return nilPubKey, fmt.Errorf("Unable to decode multihash")
+		return nilPubKey, MultihashDecodeErr
 	}
 
 	// Check ID multihash codec
 	if decoded.Code != mh.ID {
-		return nilPubKey, fmt.Errorf("Unexpected multihash codec")
+		return nilPubKey, MultihashCodecErr
 	}
 
 	// Check multihash length
 	if decoded.Length != 2+32 {
-		return nilPubKey, fmt.Errorf("Unexpected multihash length")
+		return nilPubKey, MultihashLengthErr
 	}
 
 	// Split prefix
@@ -93,7 +99,7 @@ func (id ID) ExtractEd25519PublicKey() (ic.PubKey, error) {
 
 	// Check ed25519 code
 	if code != mc.Ed25519Pub {
-		return nilPubKey, fmt.Errorf("Unexpected code prefix")
+		return nilPubKey, CodePrefixErr
 	}
 
 	// Unmarshall public key
