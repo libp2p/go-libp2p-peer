@@ -15,15 +15,21 @@
     },
     {
       "author": "whyrusleeping",
-      "hash": "QmP1DfoUjiWH2ZBo1PBH6FupdBucbDepx3HpWmEY6JMUpY",
+      "hash": "QmaPbCnUMBohSGo3KnxEa2bHqyJVVeEEcwtqJAYxerieBo",
       "name": "go-libp2p-crypto",
-      "version": "1.4.2"
+      "version": "1.5.0"
     },
     {
       "author": "multiformats",
       "hash": "QmU9a9NV9RdPNwZQDYd5uKsm6N6LJLSvLbywDDYFbaaC6P",
       "name": "go-multihash",
       "version": "1.0.5"
+    },
+    {
+      "author": "whyrusleeping",
+      "hash": "QmNhVCV7kgAqW6oh6n8m9myxT2ksGPhVZnHkzkBvR5qg2d",
+      "name": "go-multicodec-packed",
+      "version": "0.1.0"
     }
   ],
   "gxVersion": "0.4.0",
