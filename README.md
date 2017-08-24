@@ -35,6 +35,8 @@ pid, err := peer.IDFromPublicKey(pub)
 if err != nil { panic(err) }
 ```
 
+Go to https://godoc.org/github.com/libp2p/go-libp2p-peer
+
 ## Contribute
 
 Feel free to join in. All welcome. Open an [issue](https://github.com/ipfs/go-libp2p-peer/issues)!
