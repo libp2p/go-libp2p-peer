@@ -16,7 +16,24 @@ TODO
 
 ## Usage
 
-TODO
+Generate a peers ID:
+
+```go
+import (
+        "crypto/rand"
+
+        crypto "github.com/libp2p/go-libp2p-crypto"
+        peer "github.com/libp2p/go-libp2p-peer"
+)
+
+// Generate an identity keypair using go's cryptographic randomness source
+priv, pub, err := crypto.GenerateEd25519Key(rand.Reader)
+if err != nil { panic(err) }
+
+// A peers ID is the hash of its public key
+pid, err := peer.IDFromPublicKey(pub)
+if err != nil { panic(err) }
+```
 
 ## Contribute
 
