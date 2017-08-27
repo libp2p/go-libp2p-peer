@@ -33,6 +33,12 @@ if err != nil { panic(err) }
 // A peers ID is the hash of its public key
 pid, err := peer.IDFromPublicKey(pub)
 if err != nil { panic(err) }
+
+// A peers ID corresponding to Ed25519 pk
+// embeds the public key in the ID itself
+pid, err := peer.IDFromEd25519PublicKey
+if err != nil { panic(err) }
+
 ```
 
 Go to https://godoc.org/github.com/libp2p/go-libp2p-peer
