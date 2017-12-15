@@ -76,22 +76,20 @@ func (id ID) ExtractEd25519PublicKey() (ic.PubKey, error) {
 	// <identity mc><length (2 + 32 = 34)><ed25519-pub mc><ed25519 pubkey>
 	// <0x00       ><0x22                ><0xed01        ><ed25519 pubkey>
 
-	var nilPubKey ic.PubKey
-
 	// Decode multihash
 	decoded, err := mh.Decode([]byte(id))
 	if err != nil {
-		return nilPubKey, MultihashDecodeErr
+		return nil, MultihashDecodeErr
 	}
 
 	// Check ID multihash codec
 	if decoded.Code != mh.ID {
-		return nilPubKey, MultihashCodecErr
+		return nil, MultihashCodecErr
 	}
 
 	// Check multihash length
 	if decoded.Length != 2+32 {
-		return nilPubKey, MultihashLengthErr
+		return nil, MultihashLengthErr
 	}
 
 	// Split prefix
@@ -99,14 +97,14 @@ func (id ID) ExtractEd25519PublicKey() (ic.PubKey, error) {
 
 	// Check ed25519 code
 	if code != mc.Ed25519Pub {
-		return nilPubKey, CodePrefixErr
+		return nil, CodePrefixErr
 	}
 
 	// Unmarshall public key
 	pubKey, err := ic.UnmarshalEd25519PublicKey(pubKeyBytes)
 	if err != nil {
 		// Should never occur because of the check decoded.Length != 2+32
-		return nilPubKey, fmt.Errorf("Unexpected error unmarshalling Ed25519 public key")
+		return nil, fmt.Errorf("Unexpected error unmarshalling Ed25519 public key")
 	}
 
 	return pubKey, nil

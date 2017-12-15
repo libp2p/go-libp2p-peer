@@ -18,6 +18,24 @@ TODO
 
 TODO
 
+## Format
+
+An `ID` is a [multihash](https://github.com/multiformats/multihash) with type either *SHA2_256* or *identity*.
+
+For most key types the type is *SHA2_256* and the payload is the value of `github.com/libp2p/go-libp2p-crypto.PubKey.Bytes()`.
+
+```
+<SHA2_256 mc><length (32)><SHA256 hash>
+<0x12       ><0x20       ><SHA256 hash>
+```
+
+Ed25519 public keys instead are encoded with type *identity* and as payload a [multicodec](https://github.com/multiformats/multicodec) key in packed format.
+
+```
+<identity mc><length (2 + 32 = 34)><ed25519-pub mc><ed25519 pubkey>
+<0x00       ><0x22                ><0xed01        ><ed25519 pubkey>
+```
+
 ## Contribute
 
 Feel free to join in. All welcome. Open an [issue](https://github.com/ipfs/go-libp2p-peer/issues)!
