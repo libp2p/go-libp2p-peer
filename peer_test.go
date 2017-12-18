@@ -12,7 +12,7 @@ import (
 	tu "github.com/libp2p/go-libp2p-peer/test"
 	mh "github.com/multiformats/go-multihash"
 
-	b58 "github.com/jbenet/go-base58"
+	b58 "github.com/mr-tron/base58/base58"
 )
 
 var gen1 keyset // generated

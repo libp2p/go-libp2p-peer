@@ -9,8 +9,8 @@ import (
 	"strings"
 
 	logging "github.com/ipfs/go-log" // ID represents the identity of a peer.
-	b58 "github.com/jbenet/go-base58"
 	ic "github.com/libp2p/go-libp2p-crypto"
+	b58 "github.com/mr-tron/base58/base58"
 	mc "github.com/multiformats/go-multicodec-packed"
 	mh "github.com/multiformats/go-multihash"
 )
@@ -171,7 +171,7 @@ func IDB58Encode(id ID) string {
 	return b58.Encode([]byte(id))
 }
 
-// IDHexDecode returns a b58-decoded Peer
+// IDHexDecode returns a hex-decoded Peer
 func IDHexDecode(s string) (ID, error) {
 	m, err := mh.FromHexString(s)
 	if err != nil {
@@ -180,7 +180,7 @@ func IDHexDecode(s string) (ID, error) {
 	return ID(m), err
 }
 
-// IDHexEncode returns b58-encoded string
+// IDHexEncode returns hex-encoded string
 func IDHexEncode(id ID) string {
 	return hex.EncodeToString([]byte(id))
 }
