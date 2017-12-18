@@ -21,9 +21,9 @@
     },
     {
       "author": "multiformats",
-      "hash": "QmYeKnKpubCMRiq3PGZcTREErthbb5Q9cXsCoSkD9bjEBd",
+      "hash": "QmZyZDi491cCNTLfAhwcaDii2Kg4pwKRkhqQzURGDvY6ua",
       "name": "go-multihash",
-      "version": "1.0.6"
+      "version": "1.0.7"
     },
     {
       "author": "whyrusleeping",
@@ -32,10 +32,10 @@
       "version": "0.1.0"
     },
     {
-      "author": "whyrusleeping",
-      "hash": "QmT8rehPR3F6bmwL6zjUN8XpiDBFFpMP2myPdC6ApsWfJf",
-      "name": "go-base58",
-      "version": "0.0.0"
+      "author": "mr-tron",
+      "hash": "QmWFAMPqsEyUX7gDUsRVmMWz59FxSpJ1b2v6bJ1yYzo7jY",
+      "name": "go-base58-fast",
+      "version": "0.1.1"
     }
   ],
   "gxVersion": "0.4.0",
