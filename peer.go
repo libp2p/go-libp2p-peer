@@ -19,6 +19,8 @@ var log = logging.Logger("peer")
 
 type ID string
 
+var PluggableIDFromPublicKey = defaultIDFromPublicKey
+
 // Pretty returns a b58-encoded string of the ID
 func (id ID) Pretty() string {
 	return IDB58Encode(id)
@@ -187,6 +189,10 @@ func IDHexEncode(id ID) string {
 
 // IDFromPublicKey returns the Peer ID corresponding to pk
 func IDFromPublicKey(pk ic.PubKey) (ID, error) {
+	return PluggableIDFromPublicKey(pk)
+}
+
+func defaultIDFromPublicKey(pk ic.PubKey) (ID, error) {
 	b, err := pk.Bytes()
 	if err != nil {
 		return "", err
