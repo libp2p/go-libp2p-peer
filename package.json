@@ -26,12 +26,6 @@
       "version": "1.0.7"
     },
     {
-      "author": "whyrusleeping",
-      "hash": "QmNhVCV7kgAqW6oh6n8m9myxT2ksGPhVZnHkzkBvR5qg2d",
-      "name": "go-multicodec-packed",
-      "version": "0.1.0"
-    },
-    {
       "author": "mr-tron",
       "hash": "QmWFAMPqsEyUX7gDUsRVmMWz59FxSpJ1b2v6bJ1yYzo7jY",
       "name": "go-base58-fast",
