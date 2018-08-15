@@ -3,6 +3,7 @@ package peer
 
 import (
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"strings"
 
@@ -90,6 +91,15 @@ func (id ID) ExtractPublicKey() (ic.PubKey, error) {
 		return nil, err
 	}
 	return pk, nil
+}
+
+// Validate check if ID is empty or not
+func (id ID) Validate() error {
+	if id == ID("") {
+		return errors.New("Empty peer ID")
+	}
+
+	return nil
 }
 
 // IDFromString cast a string to ID type, and validate
