@@ -1,4 +1,4 @@
-// package peer implements an object used to represent peers in the ipfs network.
+// Package peer implements an object used to represent peers in the ipfs network.
 package peer
 
 import (
@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	logging "github.com/ipfs/go-log" // ID represents the identity of a peer.
+	logging "github.com/ipfs/go-log"
 	ic "github.com/libp2p/go-libp2p-crypto"
 	b58 "github.com/mr-tron/base58/base58"
 	mh "github.com/multiformats/go-multihash"
@@ -32,6 +32,7 @@ func (id ID) Pretty() string {
 	return IDB58Encode(id)
 }
 
+// Loggable returns a pretty peerID string in loggable JSON format
 func (id ID) Loggable() map[string]interface{} {
 	return map[string]interface{}{
 		"peerID": id.Pretty(),
