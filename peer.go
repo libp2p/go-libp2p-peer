@@ -3,6 +3,7 @@ package peer
 
 import (
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"strings"
 
@@ -21,21 +22,10 @@ import (
 //   sha2-256 multihash of the public key.
 const MaxInlineKeyLength = 42
 
-// ErrEmptyPeerID is an error for empty peer ID
-type ErrEmptyPeerID struct {
-	message string
-}
-
-// NewErrEmptyPeerID creates an instance of ErrEmptyPeerID
-func NewErrEmptyPeerID() *ErrEmptyPeerID {
-	return &ErrEmptyPeerID{
-		message: "empty peer ID",
-	}
-}
-
-func (e *ErrEmptyPeerID) Error() string {
-	return e.message
-}
+var (
+	// ErrEmptyPeerID is an error for empty peer ID.
+	ErrEmptyPeerID = errors.New("empty peer ID")
+)
 
 var log = logging.Logger("peer")
 
@@ -112,7 +102,7 @@ func (id ID) ExtractPublicKey() (ic.PubKey, error) {
 // Validate check if ID is empty or not
 func (id ID) Validate() error {
 	if id == ID("") {
-		return NewErrEmptyPeerID()
+		return ErrEmptyPeerID
 	}
 
 	return nil

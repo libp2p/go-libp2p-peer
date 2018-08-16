@@ -209,8 +209,8 @@ func TestValidate(t *testing.T) {
 	err := ID("").Validate()
 	if err == nil {
 		t.Error("expected error")
-	} else if err.Error() != "empty peer ID" {
-		t.Error("expected error message: empty peer ID")
+	} else if err != ErrEmptyPeerID {
+		t.Error("expected error message: " + ErrEmptyPeerID.Error())
 	}
 
 	// Non-empty peer ID validates
