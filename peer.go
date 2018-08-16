@@ -1,12 +1,13 @@
-// package peer implements an object used to represent peers in the ipfs network.
+// Package peer implements an object used to represent peers in the ipfs network.
 package peer
 
 import (
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"strings"
 
-	logging "github.com/ipfs/go-log" // ID represents the identity of a peer.
+	logging "github.com/ipfs/go-log"
 	ic "github.com/libp2p/go-libp2p-crypto"
 	b58 "github.com/mr-tron/base58/base58"
 	mh "github.com/multiformats/go-multihash"
@@ -21,6 +22,11 @@ import (
 //   sha2-256 multihash of the public key.
 const MaxInlineKeyLength = 42
 
+var (
+	// ErrEmptyPeerID is an error for empty peer ID.
+	ErrEmptyPeerID = errors.New("empty peer ID")
+)
+
 var log = logging.Logger("peer")
 
 // ID is a libp2p peer identity.
@@ -31,6 +37,7 @@ func (id ID) Pretty() string {
 	return IDB58Encode(id)
 }
 
+// Loggable returns a pretty peerID string in loggable JSON format
 func (id ID) Loggable() map[string]interface{} {
 	return map[string]interface{}{
 		"peerID": id.Pretty(),
@@ -90,6 +97,15 @@ func (id ID) ExtractPublicKey() (ic.PubKey, error) {
 		return nil, err
 	}
 	return pk, nil
+}
+
+// Validate check if ID is empty or not
+func (id ID) Validate() error {
+	if id == ID("") {
+		return ErrEmptyPeerID
+	}
+
+	return nil
 }
 
 // IDFromString cast a string to ID type, and validate

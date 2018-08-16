@@ -204,6 +204,27 @@ func TestPublicKeyExtraction(t *testing.T) {
 	}
 }
 
+func TestValidate(t *testing.T) {
+	// Empty peer ID invalidates
+	err := ID("").Validate()
+	if err == nil {
+		t.Error("expected error")
+	} else if err != ErrEmptyPeerID {
+		t.Error("expected error message: " + ErrEmptyPeerID.Error())
+	}
+
+	// Non-empty peer ID validates
+	p, err := tu.RandPeerID()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	err = p.Validate()
+	if err != nil {
+		t.Error("expected nil, but found " + err.Error())
+	}
+}
+
 var hpkpMan = `QmRK3JgmVEGiewxWbhpXLJyjWuGuLeSTMTndA1coMHEy5o`
 var skManBytes = `
 CAAS4AQwggJcAgEAAoGBAL7w+Wc4VhZhCdM/+Hccg5Nrf4q9NXWwJylbSrXz/unFS24wyk6pEk0zi3W
