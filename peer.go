@@ -32,6 +32,8 @@ var log = logging.Logger("peer")
 // ID is a libp2p peer identity.
 type ID string
 
+var PluggableIDFromPublicKey = DefaultIDFromPublicKey
+
 // Pretty returns a b58-encoded string of the ID
 func (id ID) Pretty() string {
 	return IDB58Encode(id)
@@ -156,6 +158,10 @@ func IDHexEncode(id ID) string {
 
 // IDFromPublicKey returns the Peer ID corresponding to pk
 func IDFromPublicKey(pk ic.PubKey) (ID, error) {
+	return PluggableIDFromPublicKey(pk)
+}
+
+func DefaultIDFromPublicKey(pk ic.PubKey) (ID, error) {
 	b, err := pk.Bytes()
 	if err != nil {
 		return "", err
