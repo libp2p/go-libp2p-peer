@@ -5,7 +5,6 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"strings"
 
 	logging "github.com/ipfs/go-log"
 	ic "github.com/libp2p/go-libp2p-crypto"
@@ -52,18 +51,10 @@ func (id ID) Loggable() map[string]interface{} {
 // codebase is known to be correct.
 func (id ID) String() string {
 	pid := id.Pretty()
-
-	//All sha256 nodes start with Qm
-	//We can skip the Qm to make the peer.ID more useful
-	if strings.HasPrefix(pid, "Qm") {
-		pid = pid[2:]
+	if len(pid) <= 10 {
+		return fmt.Sprintf("<peer.ID %s>", pid)
 	}
-
-	maxRunes := 6
-	if len(pid) < maxRunes {
-		maxRunes = len(pid)
-	}
-	return fmt.Sprintf("<peer.ID %s>", pid[:maxRunes])
+	return fmt.Sprintf("<peer.ID %s*%s>", pid[:2], pid[len(pid)-6:])
 }
 
 // MatchesPrivateKey tests whether this ID was derived from sk
