@@ -123,7 +123,7 @@ func IDB58Decode(s string) (ID, error) {
 	if err != nil {
 		return "", err
 	}
-	return ID(m), err
+	return ID(m.Binary()), err
 }
 
 // IDB58Encode returns b58-encoded string
@@ -137,7 +137,7 @@ func IDHexDecode(s string) (ID, error) {
 	if err != nil {
 		return "", err
 	}
-	return ID(m), err
+	return ID(m.Binary()), err
 }
 
 // IDHexEncode returns hex-encoded string
@@ -156,7 +156,7 @@ func IDFromPublicKey(pk ic.PubKey) (ID, error) {
 		alg = mh.ID
 	}
 	hash, _ := mh.Sum(b, alg, -1)
-	return ID(hash), nil
+	return ID(hash.Binary()), nil
 }
 
 // IDFromPrivateKey returns the Peer ID corresponding to sk

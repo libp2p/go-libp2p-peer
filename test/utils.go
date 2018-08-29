@@ -20,7 +20,7 @@ func RandPeerID() (peer.ID, error) {
 		return "", err
 	}
 	h, _ := mh.Sum(buf, mh.SHA2_256, -1)
-	return peer.ID(h), nil
+	return peer.ID(h.Binary()), nil
 }
 
 func RandTestKeyPair(bits int) (ci.PrivKey, ci.PubKey, error) {
