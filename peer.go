@@ -6,7 +6,6 @@ import (
 	"errors"
 	"fmt"
 
-	logging "github.com/ipfs/go-log"
 	ic "github.com/libp2p/go-libp2p-crypto"
 	b58 "github.com/mr-tron/base58/base58"
 	mh "github.com/multiformats/go-multihash"
@@ -25,8 +24,6 @@ var (
 	// ErrEmptyPeerID is an error for empty peer ID.
 	ErrEmptyPeerID = errors.New("empty peer ID")
 )
-
-var log = logging.Logger("peer")
 
 // ID is a libp2p peer identity.
 type ID string
