@@ -196,7 +196,7 @@ func TestPublicKeyExtraction(t *testing.T) {
 		t.Fatal(err)
 	}
 	extractedRsaPub, err := rsaId.ExtractPublicKey()
-	if err != nil {
+	if err != ErrNoPublicKey {
 		t.Fatal(err)
 	}
 	if extractedRsaPub != nil {
