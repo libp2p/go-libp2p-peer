@@ -23,6 +23,8 @@ const MaxInlineKeyLength = 42
 var (
 	// ErrEmptyPeerID is an error for empty peer ID.
 	ErrEmptyPeerID = errors.New("empty peer ID")
+	// ErrNoPublickKey is an error for peer IDs that don't embed public keys
+	ErrNoPublicKey = errors.New("public key is not embedded in peer ID")
 )
 
 // ID is a libp2p peer identity.
@@ -70,7 +72,7 @@ func (id ID) MatchesPublicKey(pk ic.PubKey) bool {
 
 // ExtractPublicKey attempts to extract the public key from an ID
 //
-// This method returns nil, nil if the peer ID looks valid but it can't extract
+// This method returns ErrNoPublicKey if the peer ID looks valid but it can't extract
 // the public key.
 func (id ID) ExtractPublicKey() (ic.PubKey, error) {
 	decoded, err := mh.Decode([]byte(id))
@@ -78,7 +80,7 @@ func (id ID) ExtractPublicKey() (ic.PubKey, error) {
 		return nil, err
 	}
 	if decoded.Code != mh.ID {
-		return nil, nil
+		return nil, ErrNoPublicKey
 	}
 	pk, err := ic.UnmarshalPublicKey(decoded.Digest)
 	if err != nil {
