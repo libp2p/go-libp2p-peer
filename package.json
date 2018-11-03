@@ -9,9 +9,9 @@
   "gxDependencies": [
     {
       "author": "whyrusleeping",
-      "hash": "QmaZ1F8vQdJaQqA8hjAzH8a7Qnqqb2n2ZYeUbKMjMcxAZe",
+      "hash": "QmcgyFuP2SVMhgkTjFaXwnyAi9Fheg6A7SWgpYJKuajPnK",
       "name": "go-libp2p-crypto",
-      "version": "2.0.2"
+      "version": "2.0.3"
     },
     {
       "author": "multiformats",
@@ -31,6 +31,6 @@
   "license": "MIT",
   "name": "go-libp2p-peer",
   "releaseCmd": "git commit -a -m \"gx publish $VERSION\"",
-  "version": "2.4.1"
+  "version": "2.4.2"
 }
 
