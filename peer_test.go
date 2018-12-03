@@ -154,6 +154,7 @@ func TestIDMatchesPrivateKey(t *testing.T) {
 }
 
 func TestPublicKeyExtraction(t *testing.T) {
+	t.Skip("disabled until libp2p/go-libp2p-crypto#51 is fixed")
 	// Happy path
 	_, originalPub, err := ic.GenerateEd25519Key(rand.Reader)
 	if err != nil {
