@@ -3,14 +3,13 @@ package peer
 
 import (
 	"encoding/json"
-
-	"github.com/golang/protobuf/proto"
 )
 
-var _ proto.Marshaler = (*ID)(nil)
-var _ proto.Unmarshaler = (*ID)(nil)
+// Interface assertions commented out to avoid introducing hard dependencies to protobuf.
+// var _ proto.Marshaler = (*ID)(nil)
+// var _ proto.Unmarshaler = (*ID)(nil)
 var _ json.Marshaler = (*ID)(nil)
-var _ proto.Unmarshaler = (*ID)(nil)
+var _ json.Unmarshaler = (*ID)(nil)
 
 func (id ID) Marshal() ([]byte, error) {
 	return []byte(id), nil
