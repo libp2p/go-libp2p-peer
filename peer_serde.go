@@ -25,6 +25,12 @@ func (id *ID) Unmarshal(data []byte) (err error) {
 	return err
 }
 
+// Implements Gogo's proto.Sizer, but we omit the compile-time assertion to avoid introducing a hard
+// dependency on gogo.
+func (id ID) Size() int {
+	return len([]byte(id))
+}
+
 func (id ID) MarshalJSON() ([]byte, error) {
 	return json.Marshal(IDB58Encode(id))
 }
