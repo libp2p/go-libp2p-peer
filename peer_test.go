@@ -8,8 +8,8 @@ import (
 	"testing"
 
 	ic "github.com/libp2p/go-libp2p-crypto"
-	. "github.com/libp2p/go-libp2p-peer"
-	tu "github.com/libp2p/go-libp2p-peer/test"
+	. "github.com/libp2p/go-libp2p-peer/v4"
+	tu "github.com/libp2p/go-libp2p-peer/v4/test"
 	mh "github.com/multiformats/go-multihash"
 
 	b58 "github.com/mr-tron/base58/base58"

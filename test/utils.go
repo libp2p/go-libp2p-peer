@@ -7,7 +7,7 @@ import (
 	"time"
 
 	ci "github.com/libp2p/go-libp2p-crypto"
-	peer "github.com/libp2p/go-libp2p-peer"
+	peer "github.com/libp2p/go-libp2p-peer/v4"
 	mh "github.com/multiformats/go-multihash"
 )
 
