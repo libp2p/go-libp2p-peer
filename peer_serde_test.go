@@ -43,3 +43,41 @@ func TestPeerSerdeJSON(t *testing.T) {
 		t.Error("expected equal ids in circular serde test")
 	}
 }
+
+func TestBinaryMarshaler(t *testing.T) {
+	id, err := testutil.RandPeerID()
+	if err != nil {
+		t.Fatal(err)
+	}
+	b, err := id.MarshalBinary()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var id2 peer.ID
+	if err = id2.UnmarshalBinary(b); err != nil {
+		t.Fatal(err)
+	}
+	if id != id2 {
+		t.Error("expected equal ids in circular serde test")
+	}
+}
+
+func TestTextMarshaler(t *testing.T) {
+	id, err := testutil.RandPeerID()
+	if err != nil {
+		t.Fatal(err)
+	}
+	b, err := id.MarshalText()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var id2 peer.ID
+	if err = id2.UnmarshalText(b); err != nil {
+		t.Fatal(err)
+	}
+	if id != id2 {
+		t.Error("expected equal ids in circular serde test")
+	}
+}
