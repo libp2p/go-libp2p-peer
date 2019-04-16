@@ -5,3 +5,5 @@ require (
 	github.com/libp2p/go-libp2p-crypto v0.0.1
 	github.com/multiformats/go-multihash v0.0.1
 )
+
+go 1.11
