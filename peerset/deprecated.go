@@ -7,7 +7,11 @@ import moved "github.com/libp2p/go-libp2p-core/peer/set"
 type PeerSet = moved.PeerSet
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer/set.New instead.
-var New = moved.New
+func New() *PeerSet {
+	return moved.New()
+}
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer/set.NewLimited instead.
-var NewLimited = moved.NewLimited
+func NewLimited(size int) *PeerSet {
+	return moved.NewLimited(size)
+}
