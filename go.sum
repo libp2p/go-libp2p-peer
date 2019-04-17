@@ -32,8 +32,8 @@ github.com/kkdai/bstream v0.0.0-20161212061736-f391b8402d23/go.mod h1:J+Gs4SYgM6
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
-github.com/libp2p/go-libp2p-core v0.0.0-20190417121120-c9a30b9fbea8 h1:JhVz9FMZJ2iUZ0O2rxgfpgf6Pbf4ngi+gpkjT9hi/R8=
-github.com/libp2p/go-libp2p-core v0.0.0-20190417121120-c9a30b9fbea8/go.mod h1:4iqSipG3tx8vB0FVHHRPVl6/lZqPht2Lhd/ZBlIGNSo=
+github.com/libp2p/go-libp2p-core v0.0.0-20190417162149-f41b5dd7c01b h1:G7jk8dtQP5NeK5uckxMarWHNH0bTTDpSUMPUQwGtFEU=
+github.com/libp2p/go-libp2p-core v0.0.0-20190417162149-f41b5dd7c01b/go.mod h1:4iqSipG3tx8vB0FVHHRPVl6/lZqPht2Lhd/ZBlIGNSo=
 github.com/libp2p/go-libp2p-crypto v0.0.1 h1:JNQd8CmoGTohO/akqrH16ewsqZpci2CbgYH/LmYl8gw=
 github.com/libp2p/go-libp2p-crypto v0.0.1/go.mod h1:yJkNyDmO341d5wwXxDUGO0LykUVT72ImHNUqh5D/dBE=
 github.com/minio/blake2b-simd v0.0.0-20160723061019-3f5f724cb5b1 h1:lYpkrQH5ajf0OXOcUbGjvZxxijuBwbbmlSxLiuofa+g=

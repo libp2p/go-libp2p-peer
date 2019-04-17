@@ -1,17 +1,17 @@
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer/set instead.
 package peerset
 
-import moved "github.com/libp2p/go-libp2p-core/peer/set"
+import moved "github.com/libp2p/go-libp2p-core/peer"
 
-// Deprecated: Use github.com/libp2p/go-libp2p-core/peer/set.PeerSet instead.
-type PeerSet = moved.PeerSet
+// Deprecated: Use github.com/libp2p/go-libp2p-core/peer.Set instead.
+type PeerSet = moved.Set
 
-// Deprecated: Use github.com/libp2p/go-libp2p-core/peer/set.New instead.
+// Deprecated: Use github.com/libp2p/go-libp2p-core/set.NewSet instead.
 func New() *PeerSet {
-	return moved.New()
+	return moved.NewSet()
 }
 
-// Deprecated: Use github.com/libp2p/go-libp2p-core/peer/set.NewLimited instead.
+// Deprecated: Use github.com/libp2p/go-libp2p-core/peer/set.NewLimitedSet instead.
 func NewLimited(size int) *PeerSet {
-	return moved.NewLimited(size)
+	return moved.NewLimitedSet(size)
 }
