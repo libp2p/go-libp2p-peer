@@ -2,64 +2,64 @@
 package peer
 
 import (
-	moved "github.com/libp2p/go-libp2p-core/peer"
+	core "github.com/libp2p/go-libp2p-core/peer"
 	ic "github.com/libp2p/go-libp2p-crypto"
 )
 
 var (
 	// Deprecated: Use github.com/libp2p/go-libp2p-core/peer.ErrEmptyPeerID instead.
-	ErrEmptyPeerID = moved.ErrEmptyPeerID
+	ErrEmptyPeerID = core.ErrEmptyPeerID
 	// Deprecated: Use github.com/libp2p/go-libp2p-core/peer.ErrNoPublicKey instead.
-	ErrNoPublicKey = moved.ErrNoPublicKey
+	ErrNoPublicKey = core.ErrNoPublicKey
 )
 
 // Deprecated: use github.com/libp2p/go-libp2p-core/peer.AdvanceEnableInlining instead.
 // Warning: this variable's type makes it impossible to alias by reference.
 // Reads and writes from/to this variable may be inaccurate or not have the intended effect.
-var AdvancedEnableInlining = moved.AdvancedEnableInlining
+var AdvancedEnableInlining = core.AdvancedEnableInlining
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer.ID instead.
-type ID = moved.ID
+type ID = core.ID
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer.IDSlice instead.
-type IDSlice = moved.IDSlice
+type IDSlice = core.IDSlice
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer.IDFromString instead.
-func IDFromString(s string) (moved.ID, error) {
-	return moved.IDFromString(s)
+func IDFromString(s string) (core.ID, error) {
+	return core.IDFromString(s)
 }
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer.IDFromBytes instead.
-func IDFromBytes(b []byte) (moved.ID, error) {
-	return moved.IDFromBytes(b)
+func IDFromBytes(b []byte) (core.ID, error) {
+	return core.IDFromBytes(b)
 }
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer.IDB58Decode instead.
-func IDB58Decode(s string) (moved.ID, error) {
-	return moved.IDB58Decode(s)
+func IDB58Decode(s string) (core.ID, error) {
+	return core.IDB58Decode(s)
 }
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer.IDB58Encode instead.
 func IDB58Encode(id ID) string {
-	return moved.IDB58Encode(id)
+	return core.IDB58Encode(id)
 }
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer.IDHexDecode instead.
-func IDHexDecode(s string) (moved.ID, error) {
-	return moved.IDHexDecode(s)
+func IDHexDecode(s string) (core.ID, error) {
+	return core.IDHexDecode(s)
 }
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer.IDHexEncode instead.
 func IDHexEncode(id ID) string {
-	return moved.IDHexEncode(id)
+	return core.IDHexEncode(id)
 }
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer.IDFromPublicKey instead.
-func IDFromPublicKey(pk ic.PubKey) (moved.ID, error) {
-	return moved.IDFromPublicKey(pk)
+func IDFromPublicKey(pk ic.PubKey) (core.ID, error) {
+	return core.IDFromPublicKey(pk)
 }
 
 // Deprecated: Use github.com/libp2p/go-libp2p-core/peer.IDFromPrivateKey instead.
-func IDFromPrivateKey(sk ic.PrivKey) (moved.ID, error) {
-	return moved.IDFromPrivateKey(sk)
+func IDFromPrivateKey(sk ic.PrivKey) (core.ID, error) {
+	return core.IDFromPrivateKey(sk)
 }
