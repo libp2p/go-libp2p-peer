@@ -1,11 +1,11 @@
 package testutil
 
 import (
-	"github.com/libp2p/go-libp2p-core/peer"
-	tpeer "github.com/libp2p/go-libp2p-core/peer/test"
-
 	ci "github.com/libp2p/go-libp2p-core/crypto"
-	tcrypto "github.com/libp2p/go-libp2p-core/crypto/test"
+	"github.com/libp2p/go-libp2p-core/peer"
+
+	"github.com/libp2p/go-libp2p-testing/crypto"
+	"github.com/libp2p/go-libp2p-testing/peer"
 )
 
 // Deprecated: use github.com/libp2p/go-libp2p-core/peer/test.RandPeerID instead.
